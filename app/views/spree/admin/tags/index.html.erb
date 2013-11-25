@@ -1,0 +1,45 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_tags) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_tag_link">
+    <%= button_link_to Spree.t(:new_tag), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_tag' } %>
+  </li>
+<% end if can?(:create, Spree::Tag) %>
+
+<%= render :partial => 'spree/admin/shared/post_sub_menu' %>
+
+<div id="new_tag_wrapper" data-hook></div>
+
+<% if @collection.any? %>
+<table class="index sortable" id="listing_tags">
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 30%;">
+    <col style="width: 10%;">
+    <col style="width: 30%;">
+  </colgroup>
+  <thead>
+    <tr id="admin_tags_index_headers">
+      <th><%= Spree.t(:name) %></th>
+      <th><%= Spree.t(:permalink) %></th>
+      <th><%= Spree.t(:trending) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @collection.each do |tag| %>
+      <tr id="<%= spree_dom_id tag %>">
+        <td class="align-center"><%= tag.name %></td>
+        <td class="align-center"><%= tag.permalink %></td>
+        <td class="align-center"><%= tag.trending ? Spree.t(:yes) : "" %></td>
+        <td class="actions" data-hook="admin_tags_index_row_actions">
+          <%= link_to_edit tag, :no_text => true, :class => 'edit' if can?(:edit, tag) %>
+          &nbsp;
+          <%= link_to_delete tag, :no_text => true if can?(:delete, tag) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

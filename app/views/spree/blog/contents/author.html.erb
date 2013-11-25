@@ -1,0 +1,9 @@
+<h1>Author <em><%= @object.full_name %></em></h1>
+<h3>Bio</h3>
+<p><%= @object.bio %></p>
+<h3>Posts List</h3>
+<ul>
+  <% @object.posts.visible.each do |post| %>
+    <li><%= link_to post.title, blog_content_path(post) %></li>
+  <% end %>
+</ul>

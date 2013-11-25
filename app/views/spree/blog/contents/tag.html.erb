@@ -1,0 +1,7 @@
+<h1>Tag <em><%= @object.name %></em></h1>
+<h3>Elenco articoli</h3>
+<ul>
+  <% @object.posts.visible.each do |post| %>
+    <li><%= link_to post.title, blog_content_path(post) %></li>
+  <% end %>
+</ul>

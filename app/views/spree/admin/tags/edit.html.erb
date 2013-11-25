@@ -1,0 +1,21 @@
+<%= render :partial => 'spree/admin/shared/post_sub_menu' %>
+
+<% content_for :page_title do %>
+  <%= Spree.t(:editing_tag) %> <span class="green">"<%= @tag.name %>"</span>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li>
+    <%= button_link_to Spree.t(:back_to_tag_list), spree.admin_tags_path, :icon => 'icon-arrow-left' %>
+  </li>
+<% end %>
+
+<%= render :partial => 'spree/shared/error_messages', :locals => { :target => @tag } %>
+
+<%= form_for [:admin, @tag], html: { multipart: true } do |f| %>
+  <fieldset>
+    <legend align="center"><%= Spree.t(:new_tag) %></legend>
+    <%= render :partial => 'form', :locals => { :f => f } %>
+    <%= render :partial => 'spree/admin/shared/edit_resource_links' %>
+  </fieldset>
+<% end %>

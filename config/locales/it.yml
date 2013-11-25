@@ -1,0 +1,5 @@
+it:
+  spree:
+    blog:
+      listing_posts: "Lista Posts"
+      new_post:      "Nuovo Post"

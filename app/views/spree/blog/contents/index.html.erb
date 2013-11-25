@@ -1,0 +1,21 @@
+<h1><%= @title %></h1>
+<h3>Last <%= @posts.count %> Posts</h3>
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, blog_content_path(post) %>
+    </li>
+  <% end %>
+</ul>
+<h3>Categories</h3>
+<p>
+  <% @categories.each do |category| %>
+    <%= link_to category.name, blog_content_path(category) %>&nbsp;
+  <% end %>
+</p>
+<h3>Tags</h3>
+<p>
+  <% @tags.each do |tag| %>
+    <%= link_to tag.name, blog_content_path(tag) %>&nbsp;
+  <% end %>
+</p>

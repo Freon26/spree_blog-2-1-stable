@@ -1,0 +1,45 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_posts, scope: 'blog') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_post_link">
+    <%= button_link_to Spree.t(:new_post, scope: 'blog'), new_object_url, { :icon => 'icon-plus', :id => 'admin_new_post' } %>
+  </li>
+<% end if can?(:create, Spree::Post) %>
+
+<%= render :partial => 'spree/admin/shared/post_sub_menu' %>
+
+<div id="new_post_wrapper" data-hook></div>
+
+<% if @collection.any? %>
+<table class="index sortable" id="listing_posts">
+  <colgroup>
+    <col style="width: 55%">
+    <col style="width: 30%;">
+    <col style="width: 5%;">
+    <col style="width: 10%;">
+  </colgroup>
+  <thead>
+    <tr id="admin_posts_index_headers">
+      <th><%= Spree.t(:title) %></th>
+      <th><%= Spree.t(:author) %></th>
+      <th><%= Spree.t(:visible) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @collection.each do |post| %>
+      <tr id="<%= spree_dom_id post %>">
+        <td class="align-center"><%= post.title %></td>
+        <td class="align-center"><%= post.author.full_name %></td>
+        <td class="align-center"><%= post.visible ? Spree.t(:yes) : "" %></td>
+        <td class="actions" data-hook="admin_posts_index_row_actions">
+          <%= link_to_edit post, :no_text => true, :class => 'edit' if can?(:edit, post) %>
+          &nbsp;
+          <%= link_to_delete post, :no_text => true if can?(:delete, post) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

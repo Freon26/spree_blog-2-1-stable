@@ -1,0 +1,34 @@
+<div data-hook="admin_author_form_fields" class="align-center row">
+  <div class="alpha eight columns">
+    <%= f.field_container :first_name do %>
+      <%= f.label :first_name, Spree.t(:first_name) %> <span class="required">*</span><br />
+      <%= f.text_field :first_name, :class => "fullwidth" %>
+      <%= f.error_message_on :first_name %>
+    <% end %>
+
+    <%= f.field_container :last_name do %>
+      <%= f.label :last_name, Spree.t(:last_name) %> <span class="required">*</span><br />
+      <%= f.text_field :last_name, :class => "fullwidth" %>
+      <%= f.error_message_on :last_name %>
+    <% end %>
+
+    <%= f.field_container :permalink do %>
+      <%= f.label :last_name, Spree.t(:permalink) %><br />
+      <%= f.text_field :permalink, :class => "fullwidth" %>
+      <%= f.error_message_on :permalink %>
+    <% end %>
+  </div>
+
+  <div class="omega eight columns">
+    <%= f.field_container :bio do %>
+      <%= f.label :bio, Spree.t(:bio) %> <span class="required">*</span><br />
+      <%= f.text_area :bio, :rows => 5, :class => 'fullwidth' %>
+    <% end %>
+
+    <%= f.field_container :seo_description do %>
+      <%= f.label :seo_description %> <span class="required">*</span><br />
+      <%= f.text_area :seo_description, :rows => 5, :class => 'fullwidth' %>
+    <% end %>
+  </div>
+
+</div>

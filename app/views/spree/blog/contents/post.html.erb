@@ -1,0 +1,23 @@
+<h1><%= @object.title %></h1>
+<h3>Abstract</h3>
+<p><%= @object.abstract %></p>
+<h3>Body</h3>
+<p><%= @object.body %></p>
+<h3>Author</h3>
+<p><%= link_to @object.author.full_name, blog_content_path(@object.author) %></p>
+<h3>Category</h3>
+<p><%= link_to @object.category.name, blog_content_path(@object.category) %></p>
+<h3>Tags</h3>
+<p>
+  <% @object.tags.each do |tag| %>
+    <%= link_to tag.name, blog_content_path(tag) %>&nbsp;
+  <% end %>
+</p>
+<h3>Related Posts</h3>
+<p>
+  <ul>
+    <% @object.related_posts.visible.each do |related_post| %>
+      <li><%= link_to related_post.title, blog_content_path(related_post) %></li>
+    <% end %>
+  </ul>
+</p>

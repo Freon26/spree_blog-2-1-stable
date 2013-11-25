@@ -1,0 +1,45 @@
+<% content_for :page_title do %>
+  <%= Spree.t(:listing_authors, scope: 'blog') %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <li id="new_author_link">
+    <%= button_link_to Spree.t(:new_author, scope: 'blog'), new_object_url, { :remote => true, :icon => 'icon-plus', :id => 'admin_new_author' } %>
+  </li>
+<% end if can?(:create, Spree::Author) %>
+
+<%= render :partial => 'spree/admin/shared/post_sub_menu' %>
+
+<div id="new_author_wrapper" data-hook></div>
+
+<% if @collection.any? %>
+<table class="index sortable" id="listing_authors">
+  <colgroup>
+    <col style="width: 30%">
+    <col style="width: 30%;">
+    <col style="width: 30%;">
+    <col style="width: 10%;">
+  </colgroup>
+  <thead>
+    <tr id="admin_authors_index_headers">
+      <th><%= Spree.t(:first_name) %></th>
+      <th><%= Spree.t(:last_name) %></th>
+      <th><%= Spree.t(:permalink) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @collection.each do |author| %>
+      <tr id="<%= spree_dom_id author %>">
+        <td class="align-center"><%= author.first_name %></td>
+        <td class="align-center"><%= author.last_name %></td>
+        <td class="align-center"><%= author.permalink %></td>
+        <td class="actions" data-hook="admin_authors_index_row_actions">
+          <%= link_to_edit author, :no_text => true, :class => 'edit' if can?(:edit, author) %>
+          &nbsp;
+          <%= link_to_delete author, :no_text => true if can?(:delete, author) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

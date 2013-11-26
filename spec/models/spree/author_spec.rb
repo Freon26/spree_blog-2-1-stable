@@ -72,7 +72,7 @@ describe Spree::Author do
         expect(author).to respond_to(:seo_title)
       end
       it "should contain the full name" do
-        expect(author.seo_title).to match(Regexp.new(author.full_name))
+        expect(author.seo_title).to get(Regexp.new(author.full_name))
       end
     end
   end

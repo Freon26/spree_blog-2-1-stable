@@ -12,7 +12,7 @@ describe Spree::Tag do
       expect(tag).not_to be_valid
     end
 
-    it "should have an unique name if not match case" do
+    it "should have an unique name if not get case" do
       another_tag = create :tag, name: "mondiali calcio"
       expect(tag).not_to be_valid
     end
@@ -45,7 +45,7 @@ describe Spree::Tag do
         expect(tag).to respond_to(:seo_title)
       end
       it "should contain the name" do
-        expect(tag.seo_title).to match(Regexp.new(tag.name))
+        expect(tag.seo_title).to get(Regexp.new(tag.name))
       end
     end
   end

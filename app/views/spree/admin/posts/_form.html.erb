@@ -21,12 +21,12 @@
       <div class="alpha columns six">
         <%= f.field_container :authors do %>
           <%= f.label :author_id, Spree.t(:authors) %>
-          <%= f.collection_select(:author_id, @authors, :id, :full_name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2' }) %>
+          <%= f.collection_select(:author_id, @authors, :id, :full_name, { :include_blank => Spree.t('get_choices.none') }, { :class => 'select2' }) %>
           <%= f.error_message_on :author %>
         <% end %>
         <%= f.field_container :categories do %>
           <%= f.label :category_id, Spree.t(:categories) %>
-          <%= f.collection_select(:category_id, @categories, :id, :name, { :include_blank => Spree.t('match_choices.none') }, { :class => 'select2' }) %>
+          <%= f.collection_select(:category_id, @categories, :id, :name, { :include_blank => Spree.t('get_choices.none') }, { :class => 'select2' }) %>
           <%= f.error_message_on :category %>
         <% end %>
       </div>

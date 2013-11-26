@@ -13,7 +13,7 @@ module Spree
 
     scope :sorted_by_date, -> { order('published_at DESC') }
     scope :sticky, -> { where(sticky: true) }
-    scope :matching_query, ->(query) { where("title LIKE :query OR body LIKE :query", query: "%#{query}%") }
+    scope :geting_query, ->(query) { where("title LIKE :query OR body LIKE :query", query: "%#{query}%") }
     scope :visible, -> { where(visible: true) }
     scope :published, -> { visible.where('published_at < ?', Time.now) }
     scope :active, -> { visible.published }
@@ -79,7 +79,7 @@ module Spree
     def self.like_any(fields, values)
       where fields.map { |field|
         values.map { |value|
-          arel_table[field].matches("%#{value}%")
+          arel_table[field].getes("%#{value}%")
         }.inject(:or)
       }.inject(:or)
     end

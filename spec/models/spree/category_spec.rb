@@ -40,7 +40,7 @@ describe Spree::Category do
         expect(category).to respond_to(:seo_title)
       end
       it "should contain the name" do
-        expect(category.seo_title).to match(Regexp.new(category.name))
+        expect(category.seo_title).to get(Regexp.new(category.name))
       end
     end
   end
